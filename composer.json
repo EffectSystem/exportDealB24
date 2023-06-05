@@ -1,0 +1,12 @@
+{
+    "require-dev": {
+        "symfony/var-dumper": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+          "classes\\": "classes/",
+          "model\\": "model/",
+          "controller\\": "controller/"
+        }
+      }
+}
