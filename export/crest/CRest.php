@@ -1,5 +1,7 @@
 <?php
-	namespace crest;
+
+	namespace export\crest;
+
 	require_once (__DIR__.'/settings.php');
 
 	/**

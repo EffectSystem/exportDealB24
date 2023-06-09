@@ -6,7 +6,9 @@
         "psr-4": {
           "classes\\": "classes/",
           "model\\": "model/",
-          "controller\\": "controller/"
+          "controller\\": "controller/",
+          "export\\crest\\": "export/crest"
+          
         }
       }
 }

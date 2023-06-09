@@ -1,12 +1,15 @@
 <?php
 
 use classes\Deb;
-use controller\Export;
+use model\User;
 
 require __DIR__."/vendor/autoload.php";
 
 
-$deals = new Export();
-$listsDeal = $deals->run();
+// $deals = new Export();
+// $listsDeal = $deals->run();
 
-Deb::print($listsDeal);
+$user = new User();
+Deb::print($user->get(7));
+
+//Deb::print($listsDeal);

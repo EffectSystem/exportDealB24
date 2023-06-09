@@ -18,9 +18,9 @@ class Deals extends Deal
 				// 	'TITLE',
                 //     'TYPE_ID',
                 // ],
-                'start' => 50
+                'start' => 1
 			]
-		);
+		)['result'];
 
         Deb::print($res['result']);
 

@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../crest/CRestPlus.php';
+namespace classes;
+
+use crest\CRest;
 
 class Contact
 {
