@@ -20,9 +20,9 @@ class Export
         $deal = new Deals();
         $deals = $deal->getList(); 
 
-        // Deb::print($deals);
+        Deb::print($deals);
 
-        // die;        
+        die;        
 
 
         foreach($deals as $value) {

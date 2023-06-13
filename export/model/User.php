@@ -1,6 +1,6 @@
 <?php
 
-namespace model;
+namespace export\model;
 
 use export\crest\CRest;
 
@@ -18,13 +18,7 @@ class User
 
    public function get($id)
    {
-        $arrUsers = $this->getAll()['result'];
-        foreach($arrUsers as $user) {
-            
-            if ($id == $user['ID']) {
-                return $user;
-            }
-        }
+        return CRest::call('user.get', ['ID' => $id]);
    }
 
    //public function find()

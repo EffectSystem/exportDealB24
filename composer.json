@@ -1,13 +1,14 @@
 {
-    "require-dev": {
-        "symfony/var-dumper": "^6.3"
-    },
-    "autoload": {
+   "autoload": {
         "psr-4": {
-          "classes\\": "classes/",
-          "model\\": "model/",
-          "controller\\": "controller/",
-          "export\\crest\\": "export/crest"
+          "export\\classes\\": "export/classes/",
+          "export\\model\\": "export/model/",
+          "export\\controller\\": "export/controller/",
+          "export\\crest\\": "export/crest",
+          "import\\classes\\": "import/classes/",
+          "import\\model\\": "import/model/",
+          "import\\controller\\": "import/controller/",
+          "import\\crest\\": "import/crest"
           
         }
       }

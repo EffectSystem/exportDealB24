@@ -11,7 +11,7 @@ class Deals extends Deal
 {
     public function getList()
     {
-       return CRest::call(
+       $res = CRest::call(
 			'crm.deal.list',
 			[
 				// 'select' => [
@@ -20,18 +20,11 @@ class Deals extends Deal
                 // ],
                 'start' => 1
 			]
-		)['result'];
+		);
 
-        Deb::print($res['result']);
-
-        die;
-
-        
-
-
+        //print_r($res);
 
         $countDeal = $res['total'];
-
 
         $start = 0;
         for($i = 0; $i < $countDeal/50; $i++){

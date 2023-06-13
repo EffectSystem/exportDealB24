@@ -1,6 +1,6 @@
 <?php
 
-namespace export\crest;
+namespace crest;
 
 class CRestPlus extends CRest {
 	const CLIENT = __DIR__.'/settings.json';
