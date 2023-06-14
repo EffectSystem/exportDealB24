@@ -7,9 +7,23 @@ use export\model\Status;
 
 require __DIR__."/vendor/autoload.php";
 
+// получение всех воронок и статусов сделок
+$exportStatus = new Status();
+$arrStatus = $exportStatus->getAll();
 
-$status = new Status();
-$status->getAll();
+// добовление всех статус в воронки, воронки предварительно должны быть созданы в портале и id их должны совпадать с оригинальными
+$importStatus = new \import\model\Status();
+foreach($arrStatus as $val) {
+	Deb::print($val);	
+	$res = $importStatus->add($val);
+	if (!$res['result']) {
+		$log = [
+			'error' => $res,
+			'data' => $val
+		];
+		Deb::log($log, __DIR__.'/import/logs/errorStatus.log', 'Ошибки добавления статусов');
+	}	
+}
 
 die;
 
@@ -34,18 +48,3 @@ $importUser->addAll($users);
 die;
 
 
-$arCategory = [];
-$result = CRest::call('crm.dealcategory.list');
-if (!empty($result['result']))
-{
-	$arCategory = array_column($result['result'], 'NAME', 'ID');
-}
-$result = CRest::call('crm.dealcategory.default.get');//get name default deal category
-if (!empty($result['result']))
-{
-	$arCategory[$result['result']['ID']] = $result['result']['NAME'];
-}
-
-//Deb::print($arCategory);
-
-require __DIR__.'/test.php';
