@@ -1,10 +1,10 @@
 <?php
 
-namespace classes;
+namespace import\classes;
 
 use crest\CRest;
 
-class Contact
+class exportContact
 {
 	public static function add(array $fields, $params = null)
 	{
