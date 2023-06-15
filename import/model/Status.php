@@ -53,6 +53,7 @@ class Status
                 'NAME' => $val['NAME'],
                 'SORT' => $val['SORT'],
                 'COLOR' => $val['COLOR'],
+                'SEMANTICS' => $val['SEMANTICS'],
                 'CATEGORY_ID' => $val['CATEGORY_ID'],
             ]
         ]);
@@ -74,6 +75,56 @@ class Status
         ]);
    }
 
+   public function update(array $data)
+   {
+      return CRest::call('crm.status.update', $data);
+   }
 
+   public function list($data)
+   {
+      return CRest::call('crm.status.list', $data);
+   }
 
+   public function getId($entityId, $statusID)
+   {
+      $res = $this->list(
+         [
+            'ID' => $entityId,
+            'filter' => 
+                [
+                    'ENTITY_ID' => $entityId > 0 ? "DEAL_STAGE_{$entityId}" : 'DEAL_STAGE',
+                    'STATUS_ID' => $statusID
+                ]
+         ]
+      );
+
+      return $res['result'][0]['ID'];      
+   }
+
+   public function delete($id)
+   {
+      return CRest::call('crm.status.delete', ['ID' => $id]);
+   }
+
+   // Удалеяет все статусы из воронки кроме системных - их удалить нельзя
+   public function deleteAll($entityId)
+   {
+      $arrStatuses = $this->list(
+         [
+            'ID' => $entityId,
+            'filter' => 
+                [
+                    'ENTITY_ID' => $entityId > 0 ? "DEAL_STAGE_{$entityId}" : 'DEAL_STAGE',
+                    'SYSTEM' => 'N'
+                ]
+         ]
+      );
+
+      foreach ($arrStatuses['result'] as $val) {
+         $res = $this->delete($val['ID']);
+         if (!$res['result']) {
+            Deb::print($res);
+         }
+      }
+   }
 }
