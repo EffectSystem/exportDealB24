@@ -1,8 +1,8 @@
 <?php
 
-namespace classes;
+namespace export\classes;
 
-use crest\CRest;
+use export\crest\CRest;
 
 class Company
 {

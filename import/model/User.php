@@ -46,5 +46,19 @@ class User
           }
      }
    }
-   //public function find()
+
+   public function find($search)
+   {
+     return CRest::call('user.search', [
+          'FILTER' => [
+               'FIND' => $search
+          ]
+     ]);
+   }
+
+   public function getIdByLastName($search)
+   {
+      $res = $this->find($search);
+      return $res['result'][0]['ID']; 
+   }
 }

@@ -2,7 +2,7 @@
 
 namespace export\classes;
 
-use crest\CRest;
+use export\crest\CRest;
 
 require_once __DIR__ . '/../crest/CRestPlus.php';
 

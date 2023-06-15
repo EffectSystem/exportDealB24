@@ -2,28 +2,23 @@
 
 use export\classes\Deb;
 use export\controller\Export;
+use export\model\Deals;
 use export\model\User;
 use export\model\Status;
+use import\model\Deals as ModelDeals;
 
 require __DIR__."/vendor/autoload.php";
 
-// получение всех воронок и статусов сделок
-$exportStatus = new Status();
-$arrStatus = $exportStatus->getAll();
+// die;
 
-// добовление всех статус в воронки, воронки предварительно должны быть созданы в портале и id их должны совпадать с оригинальными
-$importStatus = new \import\model\Status();
-foreach($arrStatus as $val) {
-	Deb::print($val);	
-	$res = $importStatus->add($val);
-	if (!$res['result']) {
-		$log = [
-			'error' => $res,
-			'data' => $val
-		];
-		Deb::log($log, __DIR__.'/import/logs/errorStatus.log', 'Ошибки добавления статусов');
-	}	
-}
+$exportDeal = new Deals();
+//Deb::print($exportDeal->getList());
+// die;
+
+$import = new \import\model\Deals();
+$import->addAll($exportDeal->getList());
+die;
+
 
 die;
 
@@ -35,7 +30,7 @@ die;
 
 
 
-// получеме всех пользователей
+// получаем всех пользователей
 $exportUser = new User;
 $users = $exportUser->getAll();
 Deb::print($users);

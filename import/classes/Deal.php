@@ -1,8 +1,8 @@
 <?php
 
-namespace classes;
+namespace import\classes;
 
-use crest\CRest;
+use import\crest\CRest;
 
 require_once __DIR__ . '/../crest/CRestPlus.php';
 

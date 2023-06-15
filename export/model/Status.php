@@ -7,11 +7,11 @@ use export\classes\Deb;
 
 class Status
 {
-
    public function getAll()
    {        
       $arCategory = [];
       $result = CRest::call('crm.dealcategory.list');
+      
       if (!empty($result['result']))
       {
          $arCategory = array_column($result['result'], 'NAME', 'ID');
@@ -39,10 +39,6 @@ class Status
          $resStaus = array_merge($resStaus, $resultDeal['result']);
            
       }
-
-      return $resStaus;
-         
-     
+      return $resStaus;     
    }
-
 }
