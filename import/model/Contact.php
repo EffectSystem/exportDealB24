@@ -10,20 +10,24 @@ class Contact
     {
         // получаем по id контакта email и номер телефона
         $res = \export\model\Contact::get($id);
-        $arrPhones = $res['result']['PHONE'];
-        $arrEmails = $res['result']['EMAIL'];
+        $arrPhones = $res['result']['PHONE'] ?? null;
+        $arrEmails = $res['result']['EMAIL'] ?? null;
 
-        foreach ($arrEmails as $val) {
-           $resFind = $this->findByEmail($val['VALUE']);
-           if ($resFind) {
-            return $resFind;
-           }
-        }
+        if ($arrEmails) {
+            foreach ($arrEmails as $val) {
+                $resFind = $this->findByEmail($val['VALUE']);
+                if ($resFind) {
+                 return $resFind;
+                }
+            }
+        }       
 
-        foreach ($arrPhones as $val) {
-            $resFind = $this->findByPhone($val['VALUE']);
-            if ($resFind) {
-             return $resFind;
+        if ($arrPhones) {
+            foreach ($arrPhones as $val) {
+                $resFind = $this->findByPhone($val['VALUE']);
+                if ($resFind) {
+                 return $resFind;
+                }
             }
         }
     }
