@@ -5,23 +5,13 @@ namespace import\model;
 use export\classes\Deb;
 use import\crest\CRest;
 
-/**
- * [Description Contact]
- */
-class Contact
+class Company
 {
-    /**
-     * [Description for getId]
-     *
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
     public function getId($id)
     {
         // получаем по id контакта email и номер телефона
-        $res = \export\model\Contact::get($id);
-        //Deb::print($res);
+        $res = \export\model\Company::get($id);
+        Deb::print($res);
         $arrPhones = $res['result']['PHONE'] ?? null;
         $arrEmails = $res['result']['EMAIL'] ?? null;
 
@@ -42,17 +32,6 @@ class Contact
                 }
             }
         }
-
-        return  $this->getList(
-            [
-            'filter' => [
-                'LAST_NAME' => $res['result']['LAST_NAME'],
-                'NAME' => $res['result']['NAME'],
-            ]
-            ]
-        )['result'][0]['ID'];
-
-
     }
 
     /**
@@ -61,37 +40,41 @@ class Contact
      * @param mixed $email
      * 
      * @return [type]
+     * 
      */
     public static function findByEmail($email)
     {
         $res = \import\crest\CRest::call(
             'crm.duplicate.findbycomm', [
             'type' => 'EMAIL',
-            'entity_type' => 'CONTACT',
+            'entity_type' => 'COMPANY',
             'values' => [$email]
             ]
         );
-        return $res['result']['CONTACT'][0] ?? null;
+        return $res['result']['COMPANY'][0] ?? null;
     }
 
-    /**
-     * [Description for findByPhone]
-     *
-     * @param mixed $phone
-     * 
-     * @return [type]
-     * 
-     */
     public static function findByPhone($phone)
     {
         $res = \import\crest\CRest::call(
             'crm.duplicate.findbycomm', [
-            'type' => 'PHONE',
-            'entity_type' => 'CONTACT',
-            'values' => [$phone]
+                'type' => 'PHONE',
+                'entity_type' => 'COMPANY',
+                'values' => [$phone]
             ]
         );
-        return $res['result']['CONTACT'][0] ?? null;
+        return $res['result']['COMPANY'][0] ?? null;
+    }
+
+    public function getIdByTitle($title)
+    {
+        return $this->getList(
+            [
+                'filter' => [
+                    'TITLE' => $title
+                ]
+            ]
+        )['result'][0]['ID'];
     }
 
     /**
@@ -104,7 +87,9 @@ class Contact
      */
     public function getList($data)
     {
-        return CRest::call('crm.contact.list', $data);
+        return CRest::call('crm.company.list', $data);
     }
+
+
 
 }

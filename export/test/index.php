@@ -5,9 +5,87 @@ require __DIR__."/../../vendor/autoload.php";
 use export\classes\Deb;
 use export\model\Status;
 use export\classes\Deal;
+use export\model\TimeLine;
 use import\classes\exportContact;
 use import\model\Contact;
 
+
+// $importCompany = new \import\model\Company();
+// $CompanyIdImport = $importCompany->getId(15); 
+
+// Deb::print($CompanyIdImport);
+
+// die;
+
+$importContact = new \import\model\Contact();
+$contactIdImport = $importContact->getId(5); 
+Deb::print($contactIdImport);
+
+die;
+
+$importCompany = new \import\model\Company();
+
+Deb::print($importCompany->getIdByTitle(''));
+
+die;
+
+
+
+// $exportTasks = new \export\model\Task();
+// $resTasks = $exportTasks->getByIdDeal(6945);
+
+$exportDeal = new export\classes\Deal();
+Deb::print($exportDeal->get(17));
+
+die;
+
+$importContact = new Contact();
+$contactIdImport = $importContact->getId(11); 
+
+
+Deb::print($contactIdImport);
+
+die;
+
+
+Deb::print($contactIdImport);
+
+die;
+
+
+
+$importTasks = new \import\model\Task();
+$res = $importTasks->addAllForDeal(3447, $resTasks);
+Deb::print($res);
+
+die;
+
+
+$exportUser = new \export\model\User();
+
+
+$importUser =  new \import\model\User();
+Deb::print($importUser->getIdByLastName($exportUser->getLastNameAndName(7)));
+
+die;
+
+$exportTimeLine = new TimeLine();
+$res = $exportTimeLine->getAllComment(21, 'deal');
+
+Deb::print($res);
+
+die;
+
+// $importTimeLine = new \import\model\TimeLine();
+// $res = $importTimeLine->add(
+//     [
+//         'fields' => [
+//             'ENTITY_ID' => 3237,
+//             'ENTITY_TYPE' => 'deal',
+//             'COMMENT' => "Новый комментарий"
+//         ]
+//     ]
+// );
 
 // $exportDeal = new export\classes\Deal();
 // Deb::print($exportDeal->get(21));
@@ -22,11 +100,7 @@ use import\model\Contact;
 
 // $importUser = new \import\model\User();
 // Deb::print($importUser->getIdByLastName('Байбурина'));
-$exportUser = new \export\model\User();
-Deb::print($exportUser->getLastNameAndName(7));
 
-
-die;
 
 // $importStatus = new \import\model\Status();
 //Deb::print($importStatus->getId(5, 'C5:NEW'));

@@ -1,10 +1,11 @@
 <?php
 
-require_once __DIR__ . '/../crest/CRestPlus.php';
+namespace export\classes;
+
+use export\crest\CRest;
 
 class Task
 {
-
   // создание задачи
   public static function add(array $fields)
   {

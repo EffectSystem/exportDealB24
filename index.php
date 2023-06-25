@@ -4,8 +4,6 @@ use export\classes\Deb;
 use export\controller\Export;
 use export\model\Deals;
 use export\model\User;
-use export\model\Status;
-use import\model\Deals as ModelDeals;
 
 require __DIR__."/vendor/autoload.php";
 
